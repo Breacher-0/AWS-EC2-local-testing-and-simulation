@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npx serverless deploy --stage local",
+    "create-bucket": "aws --endpoint-url=http://localhost:4566 s3 mb s3://university-docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "serverless": "^4.34.0",
+    "serverless-localstack": "^1.4.0"
+  }
+}

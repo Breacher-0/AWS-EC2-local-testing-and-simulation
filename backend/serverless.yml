@@ -1,0 +1,30 @@
+service: cloud-simulation-backend
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    stages:
+      - local
+    host: http://127.0.0.1
+    edgePort: 4566
+    autostart: false
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: local
+  region: us-east-1
+
+functions:
+  processUpload:
+    handler: handler.processUpload
+    events:
+      - s3:
+          bucket: university-docs
+          event: s3:ObjectCreated:*
+          rules:
+            - prefix: uploads/
