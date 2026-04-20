@@ -1,0 +1,4 @@
+node_modules/
+volume/
+.env
+.DS_Store

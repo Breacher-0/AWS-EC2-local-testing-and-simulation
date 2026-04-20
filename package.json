@@ -1,0 +1,16 @@
+{
+  "name": "cloud-simulation-demo",
+  "version": "1.0.0",
+  "description": "Cloud Simulation Demo using LocalStack, Serverless, React and Playwright",
+  "scripts": {
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down",
+    "backend:deploy": "npm run deploy --prefix backend",
+    "frontend:start": "npm run dev --prefix frontend",
+    "test:e2e": "npm run test --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "wait-on": "^7.2.0"
+  }
+}
