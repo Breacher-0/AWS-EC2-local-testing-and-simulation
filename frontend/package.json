@@ -7,15 +7,18 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "npx playwright test"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1037.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
+    "@aws-sdk/client-cloudwatch-logs": "^3.1037.0",
+    "@aws-sdk/client-s3": "^3.1037.0",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.59.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
