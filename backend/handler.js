@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * processUpload — Lambda handler triggered by S3 ObjectCreated events.
+ * Logs metadata about uploaded documents for validation purposes.
+ */
 module.exports.processUpload = async (event) => {
   console.log("Lambda processUpload execution started.");
   
