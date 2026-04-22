@@ -5,9 +5,13 @@
   "scripts": {
     "infra:up": "docker compose up -d",
     "infra:down": "docker compose down",
-    "backend:deploy": "npm run deploy --prefix backend",
+    "infra:wait": "npx -y wait-on tcp:4566 --timeout 30000",
+    "backend:deploy": "cd backend && npx serverless deploy --stage local",
+    "frontend:dev": "npm run dev --prefix frontend",
     "frontend:start": "npm run dev --prefix frontend",
-    "test:e2e": "npm run test --prefix frontend"
+    "test:e2e": "npm run test --prefix frontend",
+    "setup": "npm run infra:up && npm run infra:wait && npm run backend:deploy",
+    "demo": "npm run setup && npx concurrently --kill-others \"npm run frontend:dev\" \"npx wait-on http://localhost:5173 && npm run test:e2e\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
