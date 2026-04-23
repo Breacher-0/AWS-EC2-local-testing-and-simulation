@@ -69,7 +69,7 @@ function App() {
       </header>
 
       <main className="upload-panel">
-        <div className="drop-zone" onClick={triggerFileDialog}>
+        <div className="drop-zone" onClick={triggerFileDialog} role="button" aria-label="Select file to upload">
           <input
             id="file-input"
             ref={fileInputRef}
