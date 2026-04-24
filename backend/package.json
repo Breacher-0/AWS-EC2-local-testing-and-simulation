@@ -13,7 +13,7 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "serverless": "^4.34.0",
+    "serverless": "^3.40.0",
     "serverless-localstack": "^1.4.0"
   }
 }

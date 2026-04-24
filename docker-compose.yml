@@ -2,14 +2,15 @@ version: "3.8"
 
 services:
   localstack:
-    container_name: "localstack_main"
-    image: localstack/localstack
+    container_name: "localstack_free_demo"
+    # Going back to a 100% open-source legacy version
+    image: localstack/localstack:1.4.0
     ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+      - "0.0.0.0:4566:4566"
     environment:
-      - DEBUG=${DEBUG:-0}
-      - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - SERVICES=s3,lambda,cloudwatch,iam,sts
+      - DEBUG=1
+      - LAMBDA_EXECUTOR=local
+      - DISABLE_CORS_CHECKS=1
+      - EXTRA_CORS_ALLOWED_ORIGINS=*
+    restart: "no"

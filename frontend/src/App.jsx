@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import './App.css';
 
-const LOCALSTACK_ENDPOINT = 'http://localhost:4566';
+const LOCALSTACK_ENDPOINT = 'http://127.0.0.1:4566';
 const BUCKET_NAME = 'university-docs';
 const REGION = 'us-east-1';
 
@@ -14,6 +14,7 @@ const s3 = new S3Client({
     accessKeyId: 'test',
     secretAccessKey: 'test',
   },
+  requestChecksumCalculation: 'when_supported'
 });
 
 function App() {
