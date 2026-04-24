@@ -63,7 +63,7 @@ def create_presentation():
             p.font.size = Pt(22)
             p.space_after = Pt(12)
 
-    # --- CONTENT GENERATION (Literal copy from user guide) ---
+    # --- CONTENT GENERATION ---
 
     add_title_slide()
 
@@ -122,7 +122,7 @@ def create_presentation():
         "• Visual Excellence: We used Vanilla CSS to create a premium, dark-mode design. Used 'Clean Class Names' (like .upload-btn)."
     ])
 
-    # 6. Manual Validation: The Audit
+    # 6. Manual Validation
     add_text_slide("6. Manual Validation: The Audit", [
         "In this demo, we don't just hope it works; we prove it manually.",
         "1. Direct Action: Upload a real document through the React Dashboard.",
@@ -130,7 +130,6 @@ def create_presentation():
         "3. Proof: The logs explicitly show the S3 event triggering the Lambda worker."
     ])
 
-    # 6. Manual Validation (Continued)
     add_text_slide("6. Manual Validation (Continued)", [
         "• The Audit Trail: Every upload generates a unique Request ID in CloudWatch.",
         "• Transparency: We can see the exact size, timestamp, and success status of the validation.",
@@ -144,15 +143,9 @@ def create_presentation():
     title.text = "7. File-by-File Purpose Breakdown"
     title.text_frame.paragraphs[0].font.color.rgb = COLOR_ACCENT
 
-    rows, cols = 11, 2
-    table = slide.shapes.add_table(rows, cols, Inches(0.5), Inches(1.2), Inches(9), Inches(6)).table
-    table.columns[0].width = Inches(2.2)
-    table.columns[1].width = Inches(6.8)
-
     data = [
         ("File Name", "Purpose"),
         ("docker-compose.yml", "Instructions to build and start the 'Magic Box' (LocalStack)."),
-        ("package.json (Root)", "The remote control to start the demo with one command."),
         ("serverless.yml", "Blueprint for S3 buckets and Lambda workers."),
         ("handler.js", "The actual code the Lambda worker runs (The Logic)."),
         ("App.jsx", "Frontend dashboard logic and SDK connection."),
@@ -160,6 +153,11 @@ def create_presentation():
         ("apply_cors.js", "Utility to unlock S3 security for the browser."),
         ("README.md", "High-level guide for other engineers.")
     ]
+
+    rows, cols = len(data), 2
+    table = slide.shapes.add_table(rows, cols, Inches(0.5), Inches(1.2), Inches(9), Inches(6)).table
+    table.columns[0].width = Inches(2.2)
+    table.columns[1].width = Inches(6.8)
 
     for r in range(rows):
         for c in range(cols):
@@ -175,10 +173,10 @@ def create_presentation():
 
     # 8. Summary
     add_text_slide("8. Summary for the Demo", [
-        "\"This project demonstrates a fully automated, self-validating cloud pipeline. By simulating AWS locally via Docker and LocalStack, we have created a risk-free environment to test Event-Driven Architecture. We have successfully linked a React dashboard to a Lambda function via S3, and we have used Playwright to provide a 100% automated proof of quality.\""
+        "\"This project demonstrates a fully automated, self-validating cloud pipeline. By simulating AWS locally via Docker and LocalStack, we have created a risk-free environment to test Event-Driven Architecture. We have successfully linked a React dashboard to a Lambda function via S3, and we have established a robust manual validation workflow.\""
     ])
 
-    prs.save('Ahmed_Khalil_Software_Validation.pptx')
+    prs.save('Ahmed_Khalil_Validation_Demo.pptx')
 
 if __name__ == "__main__":
     create_presentation()
