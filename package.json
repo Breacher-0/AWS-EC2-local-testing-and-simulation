@@ -1,20 +1,22 @@
 {
   "name": "cloud-simulation-demo",
   "version": "1.0.0",
-  "description": "Cloud Simulation Demo using LocalStack, Serverless, React and Playwright",
+  "description": "Cloud Simulation Demo using LocalStack, Serverless, and React",
   "scripts": {
     "infra:up": "docker compose up -d",
     "infra:down": "docker compose down",
     "infra:wait": "npx -y wait-on tcp:4566 --timeout 30000",
     "backend:deploy": "cd backend && npx serverless deploy --stage local",
-    "frontend:dev": "npm run dev --prefix frontend",
     "frontend:start": "npm run dev --prefix frontend",
-    "test:e2e": "npm run test --prefix frontend",
     "setup": "npm run infra:up && npm run infra:wait && npm run backend:deploy",
-    "demo": "npm run setup && npx concurrently --kill-others \"npm run frontend:dev\" \"npx wait-on http://localhost:5173 && npm run test:e2e\""
+    "demo": "concurrently \"npm run infra:up\" \"npm run infra:wait && npm run backend:deploy\" \"npm run frontend:start\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
     "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch-logs": "^3.750.0",
+    "@aws-sdk/client-s3": "^3.750.0"
   }
 }

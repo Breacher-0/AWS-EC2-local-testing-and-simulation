@@ -122,15 +122,19 @@ def create_presentation():
         "• Visual Excellence: We used Vanilla CSS to create a premium, dark-mode design. Used 'Clean Class Names' (like .upload-btn)."
     ])
 
-    # 6. The Audit
-    add_text_slide("6. The Audit (Playwright Validation)", [
-        "As a Lead QA Engineer, we don't just hope it works; we prove it.",
-        "1. Automated Interaction: The Robot opens the browser, finds the upload button, and 'injects' a test file.",
-        "2. API Interrogation: The Robot talks directly to the LocalStack API and asks: 'Show me the list of files. Is test-file.txt there?'"
+    # 6. Manual Validation: The Audit
+    add_text_slide("6. Manual Validation: The Audit", [
+        "In this demo, we don't just hope it works; we prove it manually.",
+        "1. Direct Action: Upload a real document through the React Dashboard.",
+        "2. Backend Interrogation: Use the custom 'view_logs.js' tool to see the Cloud's brain.",
+        "3. Proof: The logs explicitly show the S3 event triggering the Lambda worker."
     ])
 
-    add_text_slide("6. The Audit (Continued)", [
-        "3. Log Verification: The Robot then checks the CloudWatch Logbook to ensure the Lambda worker actually recorded a 'Validation Event.'"
+    # 6. Manual Validation (Continued)
+    add_text_slide("6. Manual Validation (Continued)", [
+        "• The Audit Trail: Every upload generates a unique Request ID in CloudWatch.",
+        "• Transparency: We can see the exact size, timestamp, and success status of the validation.",
+        "• Stability: Removing automated robots ensures the live demo is 100% controlled by the presenter."
     ])
 
     # 7. The Table
@@ -152,10 +156,8 @@ def create_presentation():
         ("serverless.yml", "Blueprint for S3 buckets and Lambda workers."),
         ("handler.js", "The actual code the Lambda worker runs (The Logic)."),
         ("App.jsx", "Frontend dashboard logic and SDK connection."),
-        ("App.css", "Premium styling and user interface layout."),
-        ("main.jsx", "The 'Ignition' file that starts the React engine."),
-        ("upload.spec.js", "The script for the Playwright Robot Auditor."),
-        ("playwright.config.js", "Master settings for the Robot Auditor."),
+        ("view_logs.js", "Custom tool to see the Cloud Brain (Validation Logs)."),
+        ("apply_cors.js", "Utility to unlock S3 security for the browser."),
         ("README.md", "High-level guide for other engineers.")
     ]
 
